@@ -1,3 +1,5 @@
+local constantSpeed = 20
+local speedEnabled = false
 local Players = game:GetService("Players") local UserInputService = game:GetService("UserInputService") local runService = game:GetService("RunService") local player = Players.LocalPlayer
 local function updateSpeed()
     if speedEnabled then
