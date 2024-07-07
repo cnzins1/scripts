@@ -1,0 +1,54 @@
+-- open sourced script. Tps above a players head and stays there so u can kill them. UNIVERSAL
+
+
+
+
+
+-- Variables
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local Teams = game:GetService("Teams")
+
+
+-- private variables
+local function getRandomPlayer()
+    local allPlayers = Players:GetPlayers()
+    if #allPlayers > 1 then
+        local randomPlayer
+        repeat
+            randomPlayer = allPlayers[math.random(1, #allPlayers)]
+        until randomPlayer ~= LocalPlayer and randomPlayer.Character and randomPlayer.Character:FindFirstChild("HumanoidRootPart") and 
+              (not Teams or (not LocalPlayer.Team or LocalPlayer.Team ~= randomPlayer.Team))
+        return randomPlayer
+    end
+end
+
+local function stayAbovePlayer(targetPlayer, duration)
+    local function updatePosition()
+        if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local targetHRP = targetPlayer.Character.HumanoidRootPart
+            local localHRP = LocalPlayer.Character.HumanoidRootPart
+            local newCFrame = targetHRP.CFrame * CFrame.new(0, 5, 0) * CFrame.Angles(math.rad(-90), 0, 0)
+            
+            localHRP.Velocity = Vector3.new(0, 0, 0)
+            localHRP.RotVelocity = Vector3.new(0, 0, 0)
+            localHRP.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+            localHRP.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+
+            LocalPlayer.Character:SetPrimaryPartCFrame(newCFrame)
+        end
+    end
+
+    local connection = RunService.Stepped:Connect(updatePosition)
+    wait(duration)
+    connection:Disconnect()
+end
+
+while true do
+    local targetPlayer = getRandomPlayer()
+    if targetPlayer then
+        stayAbovePlayer(targetPlayer, 6)
+    end
+    wait(1.1)
+end
