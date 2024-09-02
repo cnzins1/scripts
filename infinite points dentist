@@ -1,0 +1,28 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local players = game:GetService("Players")
+
+local strings = {
+    "Bonding",
+    "Braces",
+    "Extraction",
+    "Whitening",
+    "Wisdom Removal",
+    "CheckUp",
+    "Cleaning",
+    "Dentures",
+    "Sealants",
+    "Emergency"
+}
+
+while true do
+    
+    local ohNumber1 = nil
+    local allPlayers = players:GetPlayers()
+    local randomPlayer = allPlayers[math.random(1, #allPlayers)]
+    local ohInstance2 = randomPlayer
+    local ohString3 = strings[math.random(1, #strings)]
+
+    ReplicatedStorage.zy["b2554c10-3b3a-4eaa-bae0-5dd70cffcd1e"]:FireServer(ohNumber1, ohInstance2, ohString3)
+
+    task.wait()
+end
