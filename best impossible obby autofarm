@@ -1,0 +1,42 @@
+while true do
+wait(1)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local function findPartInFolders(partName)
+    for _, obj in ipairs(workspace:GetChildren()) do
+        if obj:IsA("Folder") then
+            for _, part in ipairs(obj:GetChildren()) do
+                if part:IsA("BasePart") and part.Name == partName then
+                    return part
+                end
+            end
+        end
+    end
+    return nil
+end
+
+local function rebirth()
+    local args = { 
+        [1] = player
+    }
+    local rebirthService = game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.6.0").knit.Services.RebirthService.RF.Rebirth
+    rebirthService:InvokeServer(unpack(args))
+end
+for i = 1, 261 do
+    local partName = tostring(i)  -- Convert the index to a string to match part names
+    local part = findPartInFolders(partName)
+    
+    if part then
+        humanoidRootPart.CFrame = part.CFrame
+        print("Teleported to part '" .. partName .. "'.")
+        wait(0.1)  -- Wait for 0.04 seconds before moving to the next part
+    else
+        print("Part '" .. partName .. "' not found in any folders.")
+        break  -- Exit the loop if any part is not found
+    end
+end
+
+wait(1)
+rebirth()
+end
