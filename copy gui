@@ -1,0 +1,45 @@
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+local function getpath(elem)
+    local p = elem.Name
+    local par = elem.Parent
+    
+    while par and par ~= game do
+        p = par.Name .. "." .. p
+        par = par.Parent
+    end
+    
+    return p
+end
+
+local function copypath(elem)
+    local p = getpath(elem)
+    print("GUI Path: " .. p)
+    
+    if setclipboard then
+        setclipboard(p)
+    end
+end
+
+local function connect(elem)
+    if elem:IsA("GuiObject") and not elem:GetAttribute("Connected") then
+        elem:SetAttribute("Connected", true)
+        elem.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                copypath(elem)
+            end
+        end)
+    end
+    
+    for _, ch in pairs(elem:GetChildren()) do
+        connect(ch)
+    end
+end
+
+local player = game:GetService("Players").LocalPlayer
+local gui = player:WaitForChild("PlayerGui")
+
+for _, e in pairs(gui:GetDescendants()) do
+    connect(e)
+end
