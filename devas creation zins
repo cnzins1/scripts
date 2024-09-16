@@ -1,0 +1,29 @@
+local p = game:GetService("Players")
+local r = game:GetService("ReplicatedStorage")
+
+local l = p.LocalPlayer
+local c = l.Character or l.CharacterAdded:Wait()
+local h = c:WaitForChild("HumanoidRootPart")
+local g = r:WaitForChild("Events"):WaitForChild("Quest"):WaitForChild("GrantQuest")
+local u = r:WaitForChild("Events"):WaitForChild("Quest"):WaitForChild("UpdateQuest")
+local t = {
+    CFrame.new(1221, -155, 225),
+    CFrame.new(1207, -159, 281),
+    CFrame.new(1771, -242, 1205),
+    CFrame.new(1783, -242, 1211)
+}
+
+local i = 1
+-------------------
+local function q()
+    while true do
+        g:FireServer("StonesOfBurden")
+        u:FireServer("StonesOfBurden")
+        h.CFrame = t[i]
+        i = (i % #t) + 1
+       
+        wait(0.2)
+    end
+end
+q()
+print("Made By Zins U skid monkey ( this was not made by me I only optimized it LOL)")
