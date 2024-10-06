@@ -1,0 +1,16 @@
+while true do
+task.wait()
+game:GetService("ReplicatedStorage").Remotes.RollFunction:InvokeServer()
+
+local function d()
+    local r=game:GetService("ReplicatedStorage")
+    local m=r:FindFirstChild("Mounts")
+    if m then
+        for _,i in pairs(m:GetChildren()) do
+            r.Remotes.DisenchantFunction:InvokeServer(i.Name,1)
+        end
+    end
+end
+
+d()
+end
