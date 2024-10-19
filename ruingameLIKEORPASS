@@ -1,0 +1,29 @@
+while true do
+    wait(0.1)
+
+    local b = {
+        [1] = {
+            ["ItemName"] = "ClownPlayer",
+            ["Key"] = "x5",
+            ["Cash"] = -0
+        }
+    }
+    game:GetService("ReplicatedStorage").Events.PurchaseTroll:InvokeServer(unpack(b))
+
+    local p = game:GetService("Players"):GetPlayers()
+    local fp = {}
+    local lp = game.Players.LocalPlayer
+
+    for _, v in ipairs(p) do
+        if v ~= lp then
+            table.insert(fp, v)
+        end
+    end
+
+    if #fp > 0 then
+        local rp = fp[math.random(1, #fp)]
+        game:GetService("ReplicatedStorage").Events.TrollPlayer:FireServer(rp.Name)
+    end
+end
+
+-- easy peasy :)
