@@ -1,3 +1,24 @@
+local function a()
+    local r = game:GetService("ReplicatedStorage")
+    local f = r:FindFirstChild("Auras")
+    if f then
+        for _, b in pairs(f:GetChildren()) do
+            r.Remotes.AcceptAura:FireServer(b.Name, true)
+        end
+    end
+end
+
+local c = 0
+while true do
+    task.wait(0.1)
+    game:GetService("ReplicatedStorage").Remotes.ZachRLL:InvokeServer()
+    c = c + 1
+    if c >= 5 then
+        a()
+        c = 0
+    end
+end
+
 while true do
     wait(0.2)
     local a="1"
@@ -28,25 +49,4 @@ while true do
     b:FireServer("Nebula",a)
     b:FireServer("Iridescent",a)
     b:FireServer("Cupid",a)
-end
-
-local function a()
-    local r = game:GetService("ReplicatedStorage")
-    local f = r:FindFirstChild("Auras")
-    if f then
-        for _, b in pairs(f:GetChildren()) do
-            r.Remotes.AcceptAura:FireServer(b.Name, true)
-        end
-    end
-end
-
-local c = 0
-while true do
-    task.wait(0.1)
-    game:GetService("ReplicatedStorage").Remotes.ZachRLL:InvokeServer()
-    c = c + 1
-    if c >= 5 then
-        a()
-        c = 0
-    end
 end
