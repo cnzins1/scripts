@@ -1,9 +1,9 @@
-local function a()
+local function acceptAuras()
     local r = game:GetService("ReplicatedStorage")
-    local f = r:FindFirstChild("Auras")
-    if f then
-        for _, b in pairs(f:GetChildren()) do
-            r.Remotes.AcceptAura:FireServer(b.Name, true)
+    local aurasFolder = r:FindFirstChild("Auras")
+    if aurasFolder then
+        for _, aura in pairs(aurasFolder:GetChildren()) do
+            r.Remotes.AcceptAura:FireServer(aura.Name, true)
         end
     end
 end
@@ -14,39 +14,26 @@ while true do
     game:GetService("ReplicatedStorage").Remotes.ZachRLL:InvokeServer()
     c = c + 1
     if c >= 5 then
-        a()
+        acceptAuras()
         c = 0
     end
 end
 
+-- List of specific auras to delete
+local aurasToDelete = {
+    "Heat", "Flames Curse", "Dark Matter", "Frigid", "Sorcerous", 
+    "Starstruck", "Voltage", "Constellar", "Iridescent", "Gale", 
+    "Shiver", "Bloom", "Fiend", "Tidal", "Flame", "Frost", 
+    "Antimatter", "Numerical", "Orbital", "Moonlit", "Glacial", 
+    "Prism", "Nebula", "Cupid"
+}
+
 while true do
     wait(0.2)
-    local a="1"
-    local b=game:GetService("ReplicatedStorage").Remotes.DeleteAura
-    b:FireServer("Heat",a)
-    b:FireServer("Flames Curse",a)
-    b:FireServer("Dark Matter",a)
-    b:FireServer("Frigid",a)
-    b:FireServer("Sorcerous",a)
-    b:FireServer("Starstruck",a)
-    b:FireServer("Voltage",a)
-    b:FireServer("Constellar",a)
-    b:FireServer("Iridescent",a)
-    b:FireServer("Gale",a)
-    b:FireServer("Shiver",a)
-    b:FireServer("Bloom",a)
-    b:FireServer("Fiend",a)
-    b:FireServer("Tidal",a)
-    b:FireServer("Flame",a)
-    b:FireServer("Frost",a)
-    b:FireServer("Antimatter",a)
-    b:FireServer("Numerical",a)
-    b:FireServer("Orbital",a)
-    b:FireServer("Moonlit",a)
-    b:FireServer("Glacial",a)
-    b:FireServer("Bloom",a)
-    b:FireServer("Prism",a)
-    b:FireServer("Nebula",a)
-    b:FireServer("Iridescent",a)
-    b:FireServer("Cupid",a)
+    local a = "1"
+    local b = game:GetService("ReplicatedStorage").Remotes.DeleteAura
+
+    for _, auraName in ipairs(aurasToDelete) do
+        b:FireServer(auraName, a)
+    end
 end
