@@ -1,5 +1,12 @@
+local player = game:GetService("Players").LocalPlayer
+local fightGui = player.PlayerGui:FindFirstChild("FightGui")
+
+if fightGui then
+    fightGui:Destroy()
+end
+
 while true do
-wait(0.05)
+task.wait()
 for i = 1, 16 do
     local ohString1 = "WinGate_" .. i
     game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.5.1"].knit.Services.FightService.RE.GetWinsEvent:FireServer(ohString1)
