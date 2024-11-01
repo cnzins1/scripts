@@ -1,0 +1,7 @@
+while true do
+wait(0.05)
+for i = 1, 16 do
+    local ohString1 = "WinGate_" .. i
+    game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.5.1"].knit.Services.FightService.RE.GetWinsEvent:FireServer(ohString1)
+end
+end
