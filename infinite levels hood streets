@@ -1,0 +1,5 @@
+local rs=game:GetService("RunService")
+
+rs.Heartbeat:Connect(function(deltatime)
+game:GetService("ReplicatedStorage").PlaytimeRewards["6"]:FireServer()
+end)
