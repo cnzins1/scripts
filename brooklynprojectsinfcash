@@ -1,0 +1,12 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local ohString1 = "MediumCash"
+local ohString2 = "Small"
+local function claimReward()
+    ReplicatedStorage.Rewards.Claim:FireServer(ohString1)
+    ReplicatedStorage.Rewards.Claim:FireServer(ohString2)
+end
+
+RunService.Heartbeat:Connect(function()
+    claimReward()
+end)
