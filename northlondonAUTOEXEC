@@ -1,0 +1,14 @@
+local rewards = {
+    "8000$",
+    "500$",
+    "1000$",
+    "1500$",
+    "2500$",
+    "5000$"
+}
+
+for _, reward in ipairs(rewards) do
+    game:GetService("ReplicatedStorage").RemotesS.Reward:FireServer(reward)
+end
+
+game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
