@@ -1,0 +1,21 @@
+-- Inf rolls, Money, Characters.
+
+local d = { -- table for destroyed UIs ( annoying )
+	game:GetService("Players").LocalPlayer.PlayerGui.HUD.Fade2,
+	game:GetService("Players").LocalPlayer.PlayerGui.HUD.Fade,
+	game:GetService("Players").LocalPlayer.PlayerGui.HUD.Bottom.Roll,
+    game:GetService("Players").LocalPlayer.PlayerGui.Tutorial
+}
+
+for _, object in ipairs(d) do
+	if object and object:IsA("Instance") then
+		object:Destroy()
+	end
+end
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Remote = ReplicatedStorage:WaitForChild("RemoteEvents"):WaitForChild("Roll")
+while true do
+    Remote:FireServer()
+    task.wait()
+end
