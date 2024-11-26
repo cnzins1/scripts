@@ -1,0 +1,25 @@
+_G.cheat = ({
+    auto_train = true,
+    pvp_mode = true,
+});
+
+local Balancer_upvr = require(game:GetService("ReplicatedStorage").Modules.Balancer) -- path
+local get_buff = Balancer_upvr.GetBuff
+local comms = game:GetService("ReplicatedStorage"):WaitForChild("Communication")
+
+do -- auto train
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if _G.cheat.auto_train then
+            comms.Hit:FireServer()
+        end
+    end)
+end
+
+function Balancer_upvr.GetBuff(name)
+    if name == "SwingSpeed" or name == "PickupRange" or name == "HPRegen" or name == "CritChance" or name == "DamageMult" or name == "EggDiscount" or name == "LifeSteal" or name == "BossDamage"  or name == "EggHatchSpeed" or name == "ExclusiveBuff" or name == "ShinyMachineChance" or name == "QuestRewards" or name == "EnemyMultChance" or name == "EggHatches" then
+        return 9e9
+    elseif name == "LuckyblockChance" or name == "GoblinChance" or name == "ThornsChance" or name == "LuckMult" then
+        return 100
+    end
+    return get_buff(name)
+end
