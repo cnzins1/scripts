@@ -1,0 +1,86 @@
+local p = game:GetService("Players").LocalPlayer
+local b = p:WaitForChild("Backpack")
+local o = {}
+
+local function g(gun)
+    local s = gun:FindFirstChild("Setting")
+    if s then return require(s) end
+    return nil
+end
+
+local ds = {
+    BaseDamage = 100,
+    FireRate = 0.07,
+    ReloadTime = 0.01,
+    AmmoPerMag = 2100,
+    SpreadX = 0,
+    SpreadY = 0,
+    Range = 9000,
+    Recoil = 0,
+    Accuracy = 0,
+    HeadshotDamageMultiplier = 6,
+    CriticalDamageMultiplier = 6,
+    EquippedAnimationSpeed = 0,
+    EquipTime = 0,
+    FireAnimationSpeed = 0,
+    ReloadAnimationSpeed = 0,
+    CameraRecoilingEnabled = false,
+}
+
+local function m(gun)
+    local s = g(gun) or ds
+    o[gun.Name] = {
+        BaseDamage = s.BaseDamage,
+        FireRate = s.FireRate,
+        SpreadX = s.SpreadX,
+        SpreadY = s.SpreadY,
+        Recoil = s.Recoil,
+        AmmoPerMag = s.AmmoPerMag,
+        EquippedAnimationSpeed = s.EquippedAnimationSpeed,
+        EquipTime = s.EquipTime,
+        FireAnimationSpeed = s.FireAnimationSpeed,
+        ReloadAnimationSpeed = s.ReloadAnimationSpeed,
+        CameraRecoilingEnabled = s.CameraRecoilingEnabled,
+    }
+    if s then
+        s.BaseDamage = 25
+        s.FireRate = 0.12
+        s.SpreadX = 0.1
+        s.Recoil = 15
+        s.AmmoPerMag = 300
+        s.EquippedAnimationSpeed = 0
+        s.EquipTime = 0
+        s.FireAnimationSpeed = 0
+        s.ReloadAnimationSpeed = 0
+        s.CameraRecoilingEnabled = false
+        s.Accuracy = 0
+    end
+end
+
+local function a()
+    for _, i in pairs(b:GetChildren()) do
+        if i:IsA("Tool") then
+            m(i)
+        end
+    end
+end
+
+local function r()
+    a()
+end
+
+local function n()
+    b.ChildAdded:Connect(function(c)
+        if c:IsA("Tool") then
+            m(c)
+        end
+    end)
+end
+
+a()
+n()
+
+p.CharacterAdded:Connect(function()
+    p:WaitForChild("Backpack")
+    r()
+end)
