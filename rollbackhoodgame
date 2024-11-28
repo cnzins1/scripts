@@ -1,0 +1,17 @@
+local function e()
+    local p = game:GetService("Players").LocalPlayer
+    local m = p.stored.Money
+    local d = m.Value
+    game:GetService("ReplicatedStorage").ATM:FireServer("Deposit", d)
+
+    local b = p.stored.Bank
+    local bA = b.Value
+    game:GetService("ReplicatedStorage").ControllerRemote:FireServer("SaveCrosshair", "\255")
+    local r = game:GetService("Players")[recipientUsername]
+    game:GetService("ReplicatedStorage").Phone:FireServer("SendMoney", r, bA)
+end
+
+while true do
+    e()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end
