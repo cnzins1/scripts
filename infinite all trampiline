@@ -1,0 +1,6 @@
+for i = 1, 300 do
+    game:GetService("ReplicatedStorage").Event.HealthAdd:FireServer(50)
+end
+
+game:GetService("ReplicatedStorage").Event.Train:FireServer(math.huge)
+game:GetService("ReplicatedStorage").Event.WinGain:FireServer(math.huge)
