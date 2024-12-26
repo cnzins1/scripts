@@ -1,0 +1,7 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local passes = player.Passes
+
+for _, v in ipairs({"EarlyAccess", "PrivateServers", "VIP", "AllEmoteSlots", "ExtraMember", "BlizzardBundle"}) do
+    passes[v].Value = true
+end
