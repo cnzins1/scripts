@@ -747,7 +747,7 @@ function library:init()
 
     local screenGui = gethui()
     if syn then protect_gui(screenGui); end
-    screenGui.Parent = gethui()
+    screenGui.Parent = game:GetService('CoreGui');
     screenGui.Enabled = true;
     utility:Instance('ImageButton', {
         Parent = screenGui,
